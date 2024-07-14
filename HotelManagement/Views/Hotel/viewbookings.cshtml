@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HotelManagement.Models.bookingModel>
+
+@{
+    ViewData["Title"] = "viewbookings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.bookingid)
+            </th>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.roomid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bookingstartdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bookingenddate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalcost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookingid)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.roomid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookingstartdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookingenddate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalcost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                    @if (item.status == "booked")
+                    {
+                        <div class="button">
+                            @Html.ActionLink("Cancel", "cancelbooking", new {bookingid=item.bookingid,bookingstartdate=item.bookingstartdate,totalcost=item.totalcost})
+                        </div>
+                    }
+            </td>
+            <td>
+                    @if (item.bookingstartdate.Date == DateTime.Today)
+                    {
+                        @if(item.status == "booked")
+                        {
+                            <div class="button">
+                                @Html.ActionLink("Check in", "checkin", new {bookingid=item.bookingid})
+                            </div>
+                        }
+                        else if(item.status == "checkedin")
+                        {
+                            <div class="button">
+                                @Html.ActionLink("Check out", "checkout", new { bookingid = item.bookingid })
+                            </div>
+                        }
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

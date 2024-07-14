@@ -1,0 +1,51 @@
+﻿@model HotelManagement.Models.RoomsModel
+
+@{
+    ViewData["Title"] = "addroom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .form-group {
+        padding-top: 15px;
+    }
+</style>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="addroom" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="roomnumber" class="control-label"></label>
+                <input asp-for="roomnumber" class="form-control" />
+                <span asp-validation-for="roomnumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="roomtype" class="control-label"></label>
+                @Html.DropDownListFor(model => model.roomtype, new SelectList(ViewBag.RoomTypes, "type", "type"))
+                <span asp-validation-for="roomtype" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Upload Image
+                <input type="file" name="imagefile" id="imagefile" />
+                <span asp-validation-for="imagepath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Facilities :<br />
+                @Html.CheckBoxFor(model=>model.wifi) Wifi<br />
+                @Html.CheckBoxFor(model => model.minibar) MiniBar<br />
+                @Html.CheckBoxFor(model => model.workspace) WorkSpace<br />
+                @Html.CheckBoxFor(model => model.roomservice) Room Service<br />
+
+
+                <span asp-validation-for="facilities" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

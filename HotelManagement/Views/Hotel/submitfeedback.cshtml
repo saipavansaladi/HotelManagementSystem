@@ -1,0 +1,35 @@
+﻿@model HotelManagement.Models.feedbackModel
+
+@{
+    ViewData["Title"] = "submitfeedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<style>
+    .form-group {
+        padding-top: 10px;
+    }
+</style>
+@if (ViewBag.totalBookings > 0)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="submitfeedback">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="comments" class="control-label"></label>
+                    <textarea asp-for="comments" class="form-control" rows="10" cols="10"></textarea>
+                    <span asp-validation-for="comments" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit Feeback" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <h2>Unfortunately you cannot submit the feedback as you never had a booking with us. Sorry for the inconvenience caused.</h2>
+}
+

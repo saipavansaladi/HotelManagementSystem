@@ -1,0 +1,69 @@
+﻿@model IEnumerable<HotelManagement.Models.RoomsModel>
+
+@{
+    ViewData["Title"] = "managerooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .form-group {
+        padding-top: 10px;
+    }
+</style>
+<br />
+<div class="button">
+    <a asp-action="addroom">Add Room</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.roomid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.roomnumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.roomtype)
+            </th>
+            <th>
+                
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.facilities)
+            </th>
+            <th>
+                Cost Per Day($)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.roomid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.roomnumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.roomtype)
+            </td>
+            <td>
+                    <img src="~/roomimages/@item.imagepath" style="height:250px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.facilities)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cost)
+            </td>
+            <td>  
+                <div class="button">
+                    @Html.ActionLink("Delete Room", "deleteroom", new { roomid=item.roomid})
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

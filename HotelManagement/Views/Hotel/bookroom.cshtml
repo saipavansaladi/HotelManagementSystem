@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "bookroom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #errorsection
+    {
+        color:red;
+    }
+</style>
+<script>
+    function validateDates() {
+        if (document.getElementById("startDate").value == "" || document.getElementById("endDate").value == "") 
+        {
+            alert("Please enter Start and End Dates in order to submit the form");
+            return false;
+        }
+        var startDate = new Date(document.getElementById("startDate").value);
+        var endDate = new Date(document.getElementById("endDate").value);
+
+        if (endDate < startDate) {
+            alert("End date must be greater than start date.");
+            return false; // Prevent form submission
+        }
+
+        return true;
+    }
+    </script>
+<br />
+<form action="bookroom" method="post" onsubmit="return validateDates()">
+    
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate">
+    <br><br />
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate">
+    <br>
+    <button type="submit">Book</button>
+    <div id="errorsection">@ViewBag.error</div>
+</form>
+
+<script type="text/javascript">
+
+    var currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 1);
+    var stringconverteddate = currentDate.toISOString().slice(0, 10);
+    document.getElementById("startDate").min = stringconverteddate;
+    document.getElementById("endDate").min = stringconverteddate;
+
+</script>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<HotelManagement.Models.bookingModel>
+
+@{
+    ViewData["Title"] = "getactivebookings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Active bookings</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.bookingid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customerid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.roomid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bookingstartdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bookingenddate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalcost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookingid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customerid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.roomid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookingstartdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookingenddate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalcost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

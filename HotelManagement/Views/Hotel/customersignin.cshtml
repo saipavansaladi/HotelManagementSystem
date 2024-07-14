@@ -1,0 +1,34 @@
+﻿@model HotelManagement.Models.customerlogin
+
+@{
+    ViewData["Title"] = "customersignin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .form-group {
+        padding-top: 10px;
+    }
+</style>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="customersignin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="customerid" class="control-label"></label>
+                <input asp-for="customerid" class="form-control" />
+                <span asp-validation-for="customerid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

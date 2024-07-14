@@ -1,0 +1,41 @@
+﻿@model IEnumerable<HotelManagement.Models.employeeLoginModel>
+
+@{
+    ViewData["Title"] = "managestaff";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .form-group {
+        padding-top: 10px;
+    }
+</style>
+<br />
+<div class="button">
+    <a asp-action="addstaff">Add Staff Member</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.staffid)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.staffid)
+            </td>
+           
+            <td>
+                <div class="button">
+                    @Html.ActionLink("Delete", "deletestaff", new { staffid=item.staffid })
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
